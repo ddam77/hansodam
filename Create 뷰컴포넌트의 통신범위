@@ -1,0 +1,47 @@
+<div id=#app>
+  <my-component01> </my-component01>
+  <my-component02> </my-component02>
+</div>
+
+...
+
+<script>
+  var cmp1 = {
+    template: '<div> 첫번째 컴포넌트 : {{ cmp1Data }}  </div>',
+    data: function(){
+      return{
+        cmp1Data : 100
+      }
+    }
+ };
+ 
+ var cmp2 = {
+    template: '<div> 두번째 컴포넌트 : {{ cmp2Data }}</div>',
+    data: function(){
+      return{
+        cmp2Data : cmp1.data.cmp1Data
+      }
+    }
+ };
+ 
+ new Vue({
+  el:'#app',
+  components: {
+  'my-component01' : cmp1,
+  'my-component02' : cmp2
+  }
+ });
+ 
+ 
+ 
+ ...
+ 
+ 결과값
+ 첫번째 컴포넌트 : 100
+ 두번째 컴포넌트 : 
+ 
+ ...
+ 
+ 컴포넌트마다 자체적으로 고유한 유효범위(독립적)를 갖고있기 때문에 다른 컴포넌트의 값을 직접 접근하지 못함
+ 
+  
